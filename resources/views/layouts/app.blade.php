@@ -56,7 +56,7 @@
                 text: message,
                 icon: "success"
             });
-        });
+        });      
     </script>
 </body>
 
