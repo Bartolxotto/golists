@@ -22,6 +22,10 @@ Route::get('/lists', function () {
     return view('lists');
 })->middleware(['auth', 'verified'])->name('lists');
 
+Route::get('/categories', function () {
+    return view('categories');
+})->middleware(['auth', 'verified'])->name('categories');
+
 /*Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
