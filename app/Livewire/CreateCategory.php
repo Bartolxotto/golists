@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\CategoryForm;
 use Livewire\Component;
 use App\Models\Category;
 
@@ -9,12 +10,7 @@ class CreateCategory extends Component
 {
     public $open = false;
 
-    public $name,$icon,$order;
-
-    protected $rules = [
-        "name" => "required|max:25|min:3",
-        "icon" => "required"
-    ];
+    public CategoryForm $form;
 
     public function updated($propertyName){
         $this->validateOnly($propertyName);
@@ -24,12 +20,10 @@ class CreateCategory extends Component
 
         $this->validate();
 
-        $this->order = 1;
-
         Category::create([
-            'name'=>$this->name,
-            'icon'=>$this->icon,
-            'order'=>$this->order
+            'name'=>$this->form->name,
+            'icon'=>$this->form->icon,
+            'order'=>$this->form->order
         ]);
 
         $this->reset(['open','name','icon','order']);
@@ -40,10 +34,5 @@ class CreateCategory extends Component
     public function render()
     {
         return view('livewire.create-category');
-    }
-
-    public function delete()
-    {
-        
     }
 }

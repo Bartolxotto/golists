@@ -11,6 +11,11 @@ class ShowCategories extends Component
 
     protected $listeners = ["render"=>"render"];
 
+    public function delete(Category $category){
+        $category->delete();
+        $this->dispatch('alert','Category deleted successfully!!');
+    }
+
     public function render()
     {
         $this->categories = Category::orderBy('order')->get();
