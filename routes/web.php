@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,20 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/lists', function () {
-    return view('lists');
-})->middleware(['auth', 'verified'])->name('lists');
-
-Route::get('/categories', function () {
-    return view('categories');
-})->middleware(['auth', 'verified'])->name('categories');
-
-/*Route::middleware([
+Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
+    Route::get('/categories', App\Livewire\ShowCategories::class)->name('categories');
+
     Route::get('/lists', function () {
         return view('lists');
-    })->name('dashboard');
-});*/
+    })->name('lists');
+
+});

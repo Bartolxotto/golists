@@ -12,21 +12,17 @@ class CreateCategory extends Component
 
     public CategoryForm $form;
 
-    public function updated($propertyName){
-        $this->validateOnly($propertyName);
-    }
-
     public function save(){
 
-        $this->validate();
+        $this->form->validate();
 
-        Category::create([
-            'name'=>$this->form->name,
-            'icon'=>$this->form->icon,
-            'order'=>$this->form->order
-        ]);
+        Category::create(
+            $this->form->all()
+        );
 
-        $this->reset(['open','name','icon','order']);
+        $this->reset(['open']);
+        $this->form->reset();
+
         $this->dispatch('render');
         $this->dispatch('alert','Category added successfully!!');
     }

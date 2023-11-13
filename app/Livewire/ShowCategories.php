@@ -2,14 +2,22 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\CategoryForm;
 use Livewire\Component;
 use App\Models\Category;
 
 class ShowCategories extends Component
 {
-    public $categories;
+    public $categories, $search = '';
+
+    public CategoryForm $form;
 
     protected $listeners = ["render"=>"render"];
+
+    public function mount()
+    {
+        $this->categories = Category::all();
+    }
 
     public function delete(Category $category){
         $category->delete();
@@ -18,7 +26,7 @@ class ShowCategories extends Component
 
     public function render()
     {
-        $this->categories = Category::orderBy('order')->get();
+        $this->categories = Category::orderBy('order')->where("name","like","%".$this->search."%")->get();
         return view('livewire.show-categories');
     }
 }

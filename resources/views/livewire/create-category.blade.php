@@ -10,21 +10,20 @@
             <x-slot name="content">
                 <div class="mb-4">
                     <x-label value="{{__('Category name')}}" />
-                    <x-input type="text" class="w-full" wire:model="name" />
-                    <x-input-error for="name" />
+                    <x-input type="text" class="w-full" wire:model="form.name" />
+                    <x-input-error for="form.name" />
 
                 </div>
                 <div class="mb-4">
                     <x-label value="{{__('Category icon')}}" />
-                    <x-input type="text" class="w-full" wire:model="icon" />
-                    <x-input-error for="icon" />
-
+                    <x-input type="text" class="w-full" wire:model="form.icon" />
+                    <x-input-error for="form.icon" />
                 </div>
             </x-slot>
 
             <x-slot name="footer">
-                <x-secondary-button wire:click="$set('open',false)" class="">{{__('Cancel')}}</x-secondary-button>
-                <x-danger-button class="ml-4 disabled:opacity-25" wire:loading.attr="disabled" wire:target="save">{{__('Save')}}</x-danger-button>
+                <x-secondary-button wire:click="$set('open',false)">{{__('Cancel')}}</x-secondary-button>
+                <x-danger-button class="ml-4 disabled:opacity-25" type="submit">{{__('Save')}}</x-danger-button>
             </x-slot>
         </x-dialog-modal>
     </form>
