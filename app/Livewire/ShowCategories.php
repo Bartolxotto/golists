@@ -26,7 +26,7 @@ class ShowCategories extends Component
 
     public function render()
     {
-        $this->categories = Category::orderBy('order')->where("name","like","%".$this->search."%")->get();
+        $this->categories = Category::orderBy('order')->where("name","LIKE","%".$this->search."%")->get();
         return view('livewire.show-categories');
     }
 }
