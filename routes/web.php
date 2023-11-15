@@ -26,6 +26,7 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/categories', App\Livewire\ShowCategories::class)->name('categories');
+    Route::get('/products', App\Livewire\Product\ShowProduct::class)->name('products');
 
     Route::get('/lists', function () {
         return view('lists');
