@@ -35,8 +35,9 @@ class EditProduct extends Component
         $product->save();
 
         $this->reset(['openEdit']);
-        $this->dispatch('render');
-        $this->dispatch('alert', 'Product updated successfully!!');
+        //$this->dispatch('render');
+        //$this->dispatch('alert', 'Product updated successfully!!');     
+        $this->js('window.location.reload()');   
     }
 
     public function render()
