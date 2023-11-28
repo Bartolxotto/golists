@@ -26,16 +26,17 @@
                 </div>
 
                 @if ($openEmojiPicker)
-                    <div class="relative z-10 bg-white border rounded-md shadow-lg py-2 px-3 mt-1 flex flex-wrap overflow-y-auto h-32">
+                    <div
+                        class="relative z-10 bg-white border rounded-md shadow-lg py-2 px-3 mt-1 flex flex-wrap overflow-y-auto h-32">
                         @foreach ($emojis as $category => $items)
-                            <div class="m-2">{{ $category }}</div>
-                            <div>
-                            @foreach ($items as $emoji)
-                                <div wire:click="$set('form.icon','{{ $emoji }}')"
-                                    class="p-2 my-1 mx-1 inline-block hover:bg-gray-200 cursor-pointer">
-                                    {{ $emoji }}
-                                </div>
-                            @endforeach
+                            <div class="m-2 w-full flex font-bolder capitalize">{{ $category }}</div>
+                            <div class="flex-wrap">
+                                @foreach ($items as $emoji)
+                                    <div wire:click="$set('form.icon','{{ $emoji }}')"
+                                        class="p-2 my-1 mx-1 inline-block hover:bg-gray-200 cursor-pointer">
+                                        {{ $emoji }}
+                                    </div>
+                                @endforeach
                             </div>
                         @endforeach
                     </div>
