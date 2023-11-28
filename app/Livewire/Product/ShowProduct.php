@@ -18,6 +18,10 @@ class ShowProduct extends Component
     {
         $this->products = Product::all();
     }
+    public function delete(Product $product){
+        $product->delete();
+        $this->dispatch('alert','Product deleted successfully!!');
+    }
     public function render()
     {
         $this->products = Product::all();
