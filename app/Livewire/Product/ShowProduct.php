@@ -9,24 +9,26 @@ use Livewire\Component;
 
 class ShowProduct extends Component
 {
-    public $categories;
+    public $categories, $search = '';
 
     public ProductForm $form;
 
-    protected $listeners = ["render"=>"render", "refresh"=>"render"];
+    protected $listeners = ["render" => "render", "refresh" => "render"];
 
-    public function mount()
+    public function delete(Product $product)
     {
-        $this->categories = Category::has('products')->with(['products', 'products.productAliases'])->get();
-    }
-    public function delete(Product $product){
         $product->delete();
-        $this->dispatch('alert','Product deleted successfully!!');
+        $this->dispatch('alert', 'Product deleted successfully!!');
     }
 
     public function render()
     {
-        $this->categories = Category::has('products')->with(['products', 'products.productAliases'])->get();
+        $this->categories = Category::has('products')
+            ->with(['products', 'products.productAliases'])
+            ->whereHas('products', function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%');
+            })
+            ->get();
         return view('livewire.product.show-product');
     }
 }
