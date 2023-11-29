@@ -22,7 +22,12 @@
                                         @foreach ($category->products as $product)
                                             <tr wire:key="product-{{ $category->id }}-{{ $product->id }}">
                                                 <td class="text-left px-6 py-4 whitespace-nowrap w-full">
-                                                    {{ $product->name }}
+                                                    <div class="w-full font-bold">{{ $product->name }}</div>
+                                                    <div class="flex">
+                                                        @foreach($product->productAliases as $alias)
+                                                            <div class="inline-block bg-blue-100 text-xs rounded border mt-1 mr-2 px-2">{{ $alias->name }}</div>
+                                                        @endforeach
+                                                    </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex flex-row">

@@ -17,7 +17,7 @@ class ShowProduct extends Component
 
     public function mount()
     {
-        $this->categories = Category::has('products')->with('products')->get();
+        $this->categories = Category::has('products')->with(['products', 'products.productAliases'])->get();
     }
     public function delete(Product $product){
         $product->delete();
@@ -26,7 +26,7 @@ class ShowProduct extends Component
 
     public function render()
     {
-        $this->categories = Category::has('products')->with('products')->get();
+        $this->categories = Category::has('products')->with(['products', 'products.productAliases'])->get();
         return view('livewire.product.show-product');
     }
 }
