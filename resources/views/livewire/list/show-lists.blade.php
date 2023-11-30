@@ -6,13 +6,12 @@
                 <div>
                     @if (count($lists) > 0)
                         @foreach ($lists as $list)
-                            <div class="flex p-2 my-2 hover:bg-gray-400 rounded cursor-pointer"
-                                wire:click="$set('selectedList',{{ $list }})">
+                            <a wire:navigate class="flex p-2 my-2 hover:bg-gray-400 rounded cursor-pointer" href="{{ route('lists') }}/{{ $list->id }}" >
                                 <div class="grow font-bold">
                                     {{ $list->name }}
                                 </div>
                                 <div class="font-extrabold"> > </div>
-                            </div>
+                            </a>
                         @endforeach
                     @else
                         {{ __('No lists') }}
@@ -20,11 +19,11 @@
                 </div>
 
                 @livewire('list.create-list')
-                
+
             </div>
 
             <div class="grow p-4">
-                    @livewire('list.show-items', ['list' => $selectedList])
+                @livewire('list.show-items', ['list' => $selectedList])
             </div>
 
         </div>

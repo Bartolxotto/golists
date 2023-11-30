@@ -3,14 +3,14 @@
 namespace App\Livewire\List;
 
 use App\Models\AppList;
-use App\Models\AppLists;
 use Livewire\Component;
 
 class ShowLists extends Component
 {
     public $lists;
 
-    #[React]
+    #[Url]
+    public $listId = '';
     public $selectedList;
 
     protected $listeners = ["render" => "render"];
@@ -18,8 +18,12 @@ class ShowLists extends Component
     public function mount()
     {
         $this->lists = AppList::all();
-        $this->selectedList = $this->lists[0];
+        if ($listId = '')
+            $this->selectedList = $this->lists[0];
+        else
+            $this->selectedList = $this->lists->find($this->listId);
     }
+
     public function render()
     {
         $this->lists = AppList::all();
