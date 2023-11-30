@@ -1,6 +1,6 @@
 <div>
     <x-danger-button class="w-full mt-4" wire:click="$set('open',true)">
-        {{ __('Add category') }}
+        {{ __('New category') }}
     </x-danger-button>
 
     <form wire:submit="save">

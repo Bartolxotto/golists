@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ListController;
 
 
 /*
@@ -27,9 +26,7 @@ Route::middleware([
 
     Route::get('/categories', App\Livewire\ShowCategories::class)->name('categories');
     Route::get('/products', App\Livewire\Product\ShowProduct::class)->name('products');
-
-    Route::get('/lists', function () {
-        return view('lists');
-    })->name('lists');
+    Route::get('/lists', App\Livewire\List\ShowLists::class)->name('lists');
+    
 
 });
