@@ -16,15 +16,16 @@ class CreateList extends Component
 
         $this->form->validate();
 
-        AppList::create(
+        $createdList = AppList::create(
             $this->form->all()
         );
 
         $this->reset(['open']);
         $this->form->reset();
 
-        $this->dispatch('render');
-        $this->dispatch('alert','List created successfully!!');
+        //$this->dispatch('render');
+        //$this->dispatch('alert','List created successfully!!');
+        $this->redirect('/lists/'.$createdList->id);
     }
 
     public function render()

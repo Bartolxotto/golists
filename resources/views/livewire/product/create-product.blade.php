@@ -1,7 +1,7 @@
 <div>
-    <x-danger-button class="w-full mt-4" wire:click="$set('open',true)">
+    <x-button class="w-full mt-4 justify-center" wire:click="$set('open',true)">
         {{__('New product')}}
-    </x-danger-button>
+    </x-button>
 
     <form wire:submit="save">
         <x-dialog-modal wire:model="open">
@@ -25,7 +25,7 @@
 
             <x-slot name="footer">
                 <x-secondary-button wire:click="$set('open',false)">{{__('Cancel')}}</x-secondary-button>
-                <x-danger-button class="ml-4 disabled:opacity-25" type="submit">{{__('Save')}}</x-danger-button>
+                <x-button class="ml-4 disabled:opacity-25" type="submit">{{__('Save')}}</x-button>
             </x-slot>
         </x-dialog-modal>
     </form>

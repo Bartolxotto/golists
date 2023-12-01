@@ -18,10 +18,10 @@ class ShowLists extends Component
     public function mount()
     {
         $this->lists = AppList::all();
-        if ($listId = '')
-            $this->selectedList = $this->lists[0];
-        else
-            $this->selectedList = $this->lists->find($this->listId);
+        if ($this->listId == '')
+            $this->listId = $this->lists[0]->id;
+        
+        $this->selectedList = $this->lists->find($this->listId);
     }
 
     public function render()

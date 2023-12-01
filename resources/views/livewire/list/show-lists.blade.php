@@ -6,7 +6,10 @@
                 <div>
                     @if (count($lists) > 0)
                         @foreach ($lists as $list)
-                            <a wire:navigate class="flex p-2 my-2 hover:bg-gray-400 rounded cursor-pointer" href="{{ route('lists') }}/{{ $list->id }}" >
+                            <a wire:navigate 
+                                class="flex p-2 my-2 hover:bg-gray-400 rounded cursor-pointer {{ ($listId == $list->id)? 'bg-gray-400' : '' }}" 
+                                href="{{ route('lists') }}/{{ $list->id }}" 
+                            >
                                 <div class="grow font-bold">
                                     {{ $list->name }}
                                 </div>

@@ -47,7 +47,7 @@
 
             <x-slot name="footer">
                 <x-secondary-button wire:click="$set('openEdit',false)">{{ __('Cancel') }}</x-secondary-button>
-                <x-danger-button class="ml-4 disabled:opacity-25" type="submit">{{ __('Save') }}</x-danger-button>
+                <x-button class="ml-4 disabled:opacity-25" type="submit">{{ __('Save') }}</x-button>
             </x-slot>
         </x-dialog-modal>
     </form>
