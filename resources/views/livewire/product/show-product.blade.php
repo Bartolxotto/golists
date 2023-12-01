@@ -4,7 +4,7 @@
             <div>
 
                 <div class="px-6 py-4">
-                    <x-input type="text" placeholder="{{ __('Search category...') }}" class="w-full my-4"
+                    <x-input type="text" placeholder="{{ __('Search products...') }}" class="w-full my-4"
                         wire:model.live="search" />
                 </div>
 
