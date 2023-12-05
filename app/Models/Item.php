@@ -15,12 +15,26 @@ class Item extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'quantity',
         'checked',
         'list_id',
-        'price',
         'product_id',
         'checked_at'
     ];
+
+    /**
+     * Get the list that owns the item.
+     */
+    public function list()
+    {
+        return $this->belongsTo(AppList::class);
+    }
+
+    /**
+     * Get the product that belongs to the item.
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

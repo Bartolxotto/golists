@@ -25,7 +25,7 @@
                     <x-input type="text" class="w-full" wire:model="form.description" />
                 </div>
                 <div class="mb-4">
-                    <x-label value="{{ __('Description') }}" />
+                    <x-label value="{{ __('Image') }}" />
                     <x-input type="text" class="w-full" wire:model="form.image" />
                 </div>
             </x-slot>
