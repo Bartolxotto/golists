@@ -7,6 +7,7 @@ use App\Livewire\Forms\ItemForm;
 use App\Models\Product;
 use App\Models\Item;
 use App\Models\AppList;
+use App\Models\Config;
 
 class CreateItem extends Component
 {
@@ -30,7 +31,12 @@ class CreateItem extends Component
 
     public function addNewProduct()
     {
-        $defaultCategory = 30;
+        $defaultCategory = 0;
+
+        $config = Config::where('param', 'DEFAULT_CATEGORY')->first();
+        if ($config)
+            $defaultCategory = $config->value;        
+
         $product = Product::create([
             'name' => $this->search,
             'url' => NULL,

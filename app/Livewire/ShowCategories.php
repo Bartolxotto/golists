@@ -5,10 +5,11 @@ namespace App\Livewire;
 use App\Livewire\Forms\CategoryForm;
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\Config;
 
 class ShowCategories extends Component
 {
-    public $categories, $search = '';
+    public $categories, $defaultCategory, $search = '';
 
     public CategoryForm $form;
 
@@ -17,6 +18,10 @@ class ShowCategories extends Component
     public function mount()
     {
         $this->categories = Category::all();
+
+        $config = Config::where('param', 'DEFAULT_CATEGORY')->first();
+        if ($config)
+            $this->defaultCategory = $config->value;
     }
 
     public function delete(Category $category){

@@ -10,8 +10,7 @@
             <div class="mb-4 text-left">
                 <x-label value="{{ __('Category name') }}" />
                 <x-input wire:model="form.name" type="text" class="w-full" />
-                <x-input-error for="form.name" />
-
+                <x-input-error for="form.name" />                
             </div>
             <div>
                 <x-label value="{{ __('Category icon') }}" />
@@ -38,6 +37,11 @@
                     @endforeach
                 </div>
             @endif
+
+            <div class="my-4 text-left">
+                <x-label value="{{ __('Default category') }}" />
+                {{ __('Is default category?') }} <x-checkbox wire:model="isDefaultCategory"  />               
+            </div>
 
         </x-slot>
 

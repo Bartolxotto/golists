@@ -19,6 +19,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/@nextapps-be/livewire-sortablejs@0.4.0/dist/livewire-sortable.js"></script>
 
     <!-- Styles -->
     @livewireStyles
