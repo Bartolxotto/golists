@@ -13,7 +13,7 @@ class CreateItem extends Component
     public AppList $list;
     public $search = "";
 
-    public function save($productId){
+    public function addExistingProduct($productId){
 
         $item = array(
             'quantity' => 1,
@@ -26,6 +26,26 @@ class CreateItem extends Component
         $this->reset("search");
         $this->dispatch('render');
         //$this->dispatch('alert','List created successfully!!');
+    }
+
+    public function addNewProduct()
+    {
+        $defaultCategory = 30;
+        $product = Product::create([
+            'name' => $this->search,
+            'url' => NULL,
+            'category_id' => $defaultCategory
+        ]);
+
+        Item::create([
+            'quantity' => 1,
+            'checked' => false,
+            'list_id' => $this->list->id,
+            'product_id' => $product->id
+        ]);
+
+        $this->reset("search");
+        $this->dispatch('render');
     }
 
     public function render()
