@@ -24,6 +24,21 @@ class ShowCategories extends Component
             $this->defaultCategory = $config->value;
     }
 
+    public function orderUp(Category $category)
+    {
+        if($category->order >= 1)
+        {
+            $category->order--;
+            $category->save();
+        }
+    }
+
+    public function orderDown(Category $category)
+    {
+        $category->order++;
+        $category->save();
+    }
+
     public function delete(Category $category){
         $category->delete();
         $this->dispatch('alert','Category deleted successfully!!');

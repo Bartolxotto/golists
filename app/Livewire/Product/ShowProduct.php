@@ -28,6 +28,7 @@ class ShowProduct extends Component
             ->whereHas('products', function ($query) {
                 $query->where('name', 'like', '%' . $this->search . '%');
             })
+            ->orderBy('order')
             ->get();
         return view('livewire.product.show-product');
     }

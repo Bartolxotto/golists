@@ -29,6 +29,28 @@
                                        <td class="px-6 py-4 whitespace-nowrap">
                                            <div class="flex flex-row">
 
+                                               <div class="mx-4 flex">
+                                                   <!-- <div>{{ $category->order }}</div> -->
+                                                   <button wire:click="orderUp({{ $category }})" class="mx-2">
+                                                       <svg class="w-6 h-6 text-gray-800 dark:text-white"
+                                                           aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                           fill="none" viewBox="0 0 10 14">
+                                                           <path stroke="currentColor" stroke-linecap="round"
+                                                               stroke-linejoin="round" stroke-width="2"
+                                                               d="M5 13V1m0 0L1 5m4-4 4 4" />
+                                                       </svg>
+                                                   </button>
+                                                   <button wire:click="orderDown({{ $category }})">
+                                                       <svg class="w-6 h-6 text-gray-800 dark:text-white"
+                                                           aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                           fill="none" viewBox="0 0 10 14">
+                                                           <path stroke="currentColor" stroke-linecap="round"
+                                                               stroke-linejoin="round" stroke-width="2"
+                                                               d="M5 1v12m0 0 4-4m-4 4L1 9" />
+                                                       </svg>
+                                                   </button>
+                                               </div>
+
                                                @livewire('edit-category', ['category' => $category], key($category->id))
 
                                                <div>
