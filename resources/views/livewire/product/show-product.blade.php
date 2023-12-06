@@ -2,10 +2,14 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-6">
             <div>
-
-                <div class="px-6 py-4">
-                    <x-input type="text" placeholder="{{ __('Search products...') }}" class="w-full my-4"
-                        wire:model.live="search" />
+                <div class="flex">
+                    <div class="grow mr-6">
+                        <x-input type="text" placeholder="{{ __('Search products...') }}" class="w-full my-4"
+                            wire:model.live="search" />
+                    </div>
+                    <div class="mt-1">
+                        @livewire('product.create-product')
+                    </div>
                 </div>
 
                 @if (count($categories) > 0)
@@ -58,9 +62,7 @@
                 @endif
             </div>
 
-            <div>
-                @livewire('product.create-product')
-            </div>
+
         </div>
     </div>
 </div>
