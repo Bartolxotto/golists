@@ -59,7 +59,14 @@ class CreateItem extends Component
         $products = [];
 
         if (strlen($this->search) > 2) {
-            $products = Product::where('name', 'like', '%' . $this->search . '%')->get();
+            
+            $products = Product::where('name', 'like', '%' . $this->search . '%')
+            ->orWhereHas('productAliases', function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%');
+            })
+            ->with('productAliases')
+            ->get();
+
         }
 
         return view('livewire.list.create-item', ['products' => $products]);
