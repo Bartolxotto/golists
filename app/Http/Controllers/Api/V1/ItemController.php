@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -12,7 +13,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::all();
+        return response()->json($items, 200);
     }
 
     /**
@@ -20,7 +22,16 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'quantity' => 'required|integer',
+            'checked' => 'required|boolean',
+            'product_id' => 'required|exists:products,id',
+            'list_id' => 'required|exists:lists,id'
+        ]);
+
+        $item = Item::create($request->all());
+
+        return response()->json($item, 201);
     }
 
     /**
@@ -28,7 +39,13 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $item = Item::find($id);
+
+        if (!$item) {
+            return response()->json(['error' => 'Item not found'], 404);
+        }
+
+        return response()->json($item, 200);
     }
 
     /**
@@ -36,7 +53,17 @@ class ItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'quantity' => 'required|integer',
+            'checked' => 'required|boolean',
+            'product_id' => 'required|exists:products,id',
+            'list_id' => 'required|exists:lists,id'
+        ]);
+
+        $item = Item::findOrFail($id);
+        $item->update($request->all());
+
+        return response()->json($item, 200);
     }
 
     /**
@@ -44,6 +71,9 @@ class ItemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = Item::findOrFail($id);
+        $item->delete();
+
+        return response()->json(null, 204);
     }
 }

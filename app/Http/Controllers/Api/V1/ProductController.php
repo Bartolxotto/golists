@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,7 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return response()->json($products, 200);
     }
 
     /**
@@ -20,7 +22,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'price' => 'nullable|numeric|min:0'
+        ]);
+
+        $product = Product::create($request->all());
+
+        return response()->json($product, 201);
     }
 
     /**
@@ -28,7 +39,13 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::find($id);
+
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+
+        return response()->json($product, 200);
     }
 
     /**
@@ -36,7 +53,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'price' => 'nullable|numeric|min:0'
+        ]);
+
+        $product = Product::findOrFail($id);
+        $product->update($request->all());
+
+        return response()->json($product, 200);
     }
 
     /**
@@ -44,6 +71,9 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return response()->json(null, 204);
     }
 }

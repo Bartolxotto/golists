@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\ItemController;
+use App\Http\Controllers\Api\V1\ListController;
+use App\Http\Controllers\Api\V1\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +20,11 @@ use App\Http\Controllers\Api\V1\CategoryController;
 
 Route::prefix('v1')->group(function () {
     Route::apiResource('category', CategoryController::class);
+    Route::apiResource('product', ProductController::class);
+    Route::apiResource('list', ListController::class);
+    Route::apiResource('item', ItemController::class);
+
+    Route::get('/lists/{listId}/items', [ListController::class, 'showItems']);
 });
 
 
