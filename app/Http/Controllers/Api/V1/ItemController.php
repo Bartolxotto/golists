@@ -76,4 +76,22 @@ class ItemController extends Controller
 
         return response()->json(null, 204);
     }
+
+    public function incrementQuantityItem(string $id)
+    {
+        $item = Item::findOrFail($id);
+        $item->quantity++;
+        $item->save();
+        return response()->json($item, 200);
+    }
+
+    public function decrementQuantityItem(string $id)
+    {
+        $item = Item::findOrFail($id);
+        if ($item->quantity > 0) {
+            $item->quantity--;
+            $item->save();
+        }
+        return response()->json($item, 200);
+    }
 }

@@ -25,6 +25,8 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('item', ItemController::class);
 
     Route::get('/lists/{listId}/items', [ListController::class, 'showItems']);
+    Route::get('/item/{itemId}/incrementQuantity', [ItemController::class, 'incrementQuantityItem']);
+    Route::get('/item/{itemId}/decrementQuantity', [ItemController::class, 'decrementQuantityItem']);
 });
 
 
