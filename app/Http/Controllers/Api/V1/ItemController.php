@@ -94,4 +94,17 @@ class ItemController extends Controller
         }
         return response()->json($item, 200);
     }
+
+    public function checkItem(string $id)
+    {
+        $item = Item::find($id);
+        $item->checked = !$item->checked;
+        if($item->checked)
+            $item->checked_at = now();
+        else
+            $item->checked_at = null;
+            
+        $item->save();
+        return response()->json($item, 200);
+    }
 }
